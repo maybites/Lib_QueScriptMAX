@@ -2,9 +2,9 @@ package ch.maybites.mxj.quescript;
 
 import org.w3c.dom.*;
 
+import ch.maybites.mxj.expression.RunTimeEnvironment;
 import ch.maybites.mxj.quescript.messages.CMsgShuttle;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
-import ch.maybites.tools.expression.RunTimeEnvironment;
 
 public interface CmndInterface {
 	

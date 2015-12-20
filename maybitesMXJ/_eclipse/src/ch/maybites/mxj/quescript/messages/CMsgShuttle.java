@@ -3,11 +3,8 @@ package ch.maybites.mxj.quescript.messages;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import ch.maybites.mxj.expression.RunTimeEnvironment;
 import ch.maybites.mxj.quescript.Cmnd;
-import ch.maybites.tools.expression.RunTimeEnvironment;
-import de.cnc.expression.AbstractRuntimeEnvironment;
-import de.cnc.expression.StandaloneRuntimeEnvironment;
-import de.cnc.expression.exceptions.ExpressionEvaluationException;
 
 public class CMsgShuttle {
 	private final static int EXECUTE_OFF 		= 0;

@@ -9,14 +9,6 @@ import org.w3c.dom.NamedNodeMap;
 
 
 /**
- * 	<script>
- * 		<keyframe time="02d:01h:23:01.001">
- * 			<frame time="23:01.001">
- * 				<event value="/osc/adress 3 3.5 string" typetag="ifs"/>
- *  			<event value="first second third 1 4.5634 56" typetag="sssifs"/>
- * 			</frame>
- * 		</keyframe>
- * 	</script>
  * 
  *	Time string. 
  *		There are several ways to write the time:
@@ -53,6 +45,18 @@ import org.w3c.dom.NamedNodeMap;
  * @author maybites
  *
  */
+
+/*
+<script>
+* 		<keyframe time="02d:01h:23:01.001">
+* 			<frame time="23:01.001">
+* 				<event value="/osc/adress 3 3.5 string" typetag="ifs"/>
+*  			<event value="first second third 1 4.5634 56" typetag="sssifs"/>
+* 			</frame>
+* 		</keyframe>
+* 	</script>
+*/
+
 public class XMLRecorder extends MaxObject
 {
 	

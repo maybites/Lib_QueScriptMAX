@@ -10,13 +10,13 @@ import org.w3c.dom.Node;
 
 import com.cycling74.max.Atom;
 
+import ch.maybites.mxj.expression.Expression;
+import ch.maybites.mxj.expression.ExpressionVar;
+import ch.maybites.mxj.expression.RunTimeEnvironment;
+import ch.maybites.mxj.expression.Expression.ExpressionException;
 import ch.maybites.mxj.quescript.messages.CMsgShuttle;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.Expression;
-import ch.maybites.tools.expression.RunTimeEnvironment;
-import ch.maybites.tools.expression.Expression.ExpressionException;
-import ch.maybites.tools.expression.ExpressionVar;
 
 public class CmndMessage extends Cmnd {
 	public static String NODE_NAME_SEND 	= "send";

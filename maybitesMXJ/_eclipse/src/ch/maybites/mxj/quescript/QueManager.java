@@ -44,12 +44,12 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import com.cycling74.jitter.JitterObject;
 import com.cycling74.max.Atom;
 
+import ch.maybites.mxj.expression.Expression;
+import ch.maybites.mxj.expression.RunTimeEnvironment;
 import ch.maybites.mxj.quescript.messages.CMsgTrigger;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
 import ch.maybites.mxj.utils.JitterObjectArray;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.Expression;
-import ch.maybites.tools.expression.RunTimeEnvironment;
 
 /**
  * <Calibration>

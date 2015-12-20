@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * @author Martin Fršhlich
+ * @author Martin Froehlich
  *
  * Max object container for test purposes
  */

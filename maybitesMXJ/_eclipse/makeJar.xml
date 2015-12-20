@@ -8,9 +8,9 @@
 	<property name="project.name" value="Lib_maybitesCore"/>
 	<property name="main.class.name" value=""/>
 	<property name="jar.name" value="maybitesMXJ.jar"/>
-	<property name="export.dir" value="${maybites.mxj.export.dir}"/>
+	<property name="export.dir" value="${project.bin.dir}/../../_java-docs"/>
 	<property name="exportLibrary" value="1" />
-	<property name="createJavaDoc" value="0" />
+	<property name="createJavaDoc" value="1" />
 	
 	<path id="library-classpath">
 		<pathelement location="${maybites.core.jar}" />
@@ -18,8 +18,8 @@
 		<pathelement location="${maxmsp.jitter.jar}" />
 	</path>
 
-	<property name="jar.export1.dir" value="${maybites.sparck.export.dir}"/>
-	
+	<property name="jar.export1.dir" value="${project.bin.dir}/../../java-classes" />
+
 	<!--
  	 		==================================================================
  	 			DO NOT CHANGE BELOW UNLESS YOU KNOW WHAT YOU ARE DOIN
@@ -32,9 +32,9 @@
 	<property name="project.extDev.jar.dir" value="extDev/java/library" />
 	<property name="project.jar.build.dir" value="bin" />
 	<property name="build.dir" value="build" />
-	<property name="build.library.dir" value="build/java/library" />
-	<property name="build.reference.dir" value="build/java/reference" />
-	<property name="build.source.dir" value="build/java/src" />
+	<property name="build.library.dir" value="build/library" />
+	<property name="build.reference.dir" value="build/reference" />
+	<property name="build.source.dir" value="build/src" />
 
 	<!-- load the javadoc properties -->
 	<property file="${project.javadoc.dir}/building.properties" />
@@ -58,14 +58,6 @@
 		
 		<!-- remove build directory -->
 		<mkdir dir="${build.dir}" />
-
-		<!-- copy extdev to build dir-->
-		<copy todir="${build.dir}">
-			<fileset dir="${project.extDev.dir}" />
-		</copy>
-
-		<!-- jar to build dir-->
-		<copy file="${project.jar.build.dir}/${jar.name}" todir="${build.library.dir}"/>
 
 		<!-- copy source to build dir-->
 		<copy todir="${build.source.dir}">

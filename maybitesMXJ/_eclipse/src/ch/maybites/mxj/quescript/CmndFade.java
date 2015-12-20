@@ -2,15 +2,15 @@ package ch.maybites.mxj.quescript;
 
 import org.w3c.dom.Node;
 
+import ch.maybites.mxj.expression.Expression;
+import ch.maybites.mxj.expression.ExpressionVar;
+import ch.maybites.mxj.expression.RunTimeEnvironment;
+import ch.maybites.mxj.expression.Expression.ExpressionException;
 import ch.maybites.mxj.quescript.messages.CMsgFade;
 import ch.maybites.mxj.quescript.messages.CMsgShuttle;
 import ch.maybites.mxj.quescript.messages.CMsgTime;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.Expression;
-import ch.maybites.tools.expression.Expression.ExpressionException;
-import ch.maybites.tools.expression.ExpressionVar;
-import ch.maybites.tools.expression.RunTimeEnvironment;
 
 public class CmndFade extends Cmnd {
 	protected static String NODE_NAME = "fade";

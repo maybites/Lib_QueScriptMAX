@@ -2,9 +2,9 @@ package ch.maybites.mxj.quescript.messages;
 
 import java.util.Calendar;
 
-import ch.maybites.tools.expression.Expression.ExpressionException;
+import ch.maybites.mxj.expression.ExpressionVar;
+import ch.maybites.mxj.expression.Expression.ExpressionException;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.ExpressionVar;
 
 public class CMsgTime {
 	final static int MILS = 0;
@@ -112,22 +112,22 @@ public class CMsgTime {
 	}
 
 	/**
-	 * Tests if the provided _time is passed the minute finger (metaphorically speaking) of this 
+	 * Tests if the provided _time is passed or equal the minute finger (metaphorically speaking) of this 
 	 * instance
 	 * @param _time
 	 * @return
 	 */
 	public boolean isHourglass(CMsgTime _time){
-		return (getHourglass() < _time.getHourglass())? true: false;
+		return (getHourglass() <= _time.getHourglass())? true: false;
 	}
 	
 	/**
-	 * Tests if the provided _time is passed the time of this instance
+	 * Tests if the provided _time is passed or equal the time of this instance
 	 * @param _time
 	 * @return
 	 */
 	public boolean isWatch(CMsgTime _time){
-		return (getTotalMillis() < _time.getTotalMillis())? true: false;
+		return (getTotalMillis() <= _time.getTotalMillis())? true: false;
 	}
 
 	/**

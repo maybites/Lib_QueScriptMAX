@@ -7,8 +7,8 @@ import java.util.Timer;
 
 import com.cycling74.max.Atom;
 
+import ch.maybites.mxj.expression.ExpressionVar;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.ExpressionVar;
 
 public class CMsgFade implements CMsgInterface{
 	String rampName = null;

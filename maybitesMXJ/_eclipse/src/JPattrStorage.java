@@ -10,7 +10,7 @@ import ch.maybites.tools.Debugger;
 import ch.maybites.tools.math.la.*;
 import ch.maybites.tools.threedee.*;
 /**
- * @author Martin Fršhlich
+ * @author Martin Froehlich
  *
  * Max object container for test purposes
  */

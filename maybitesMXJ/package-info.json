@@ -1,0 +1,39 @@
+{
+	"author" : "Martin Froehlich",
+	"authors" : [  ],
+	"categories" : [ "QueScript" ],
+	"description" : "A collection of usefull max externals.\nProgrammed by Martin Froehlich (http://maybites.ch)",
+	"displayname" : "",
+	"extends" : "",
+	"extensible" : 0,
+	"homepatcher" : "home.maxpat",
+	"max_version_max" : "none",
+	"max_version_min" : "6.1",
+	"name" : "maybitesMXJ",
+	"os" : 	{
+		"macintosh" : 		{
+			"platform" : [ "ia32", "x64" ],
+			"min_version" : "10.7.x"
+		}
+,
+		"windows" : 		{
+			"platform" : [ "ia32", "x64" ],
+			"min_version" : "7"
+		}
+
+	}
+,
+	"readme" : "",
+	"tags" : [ "QueScript" ],
+	"version" : "0.0.1",
+	"versions" : null,
+	"website" : "https://github.com/maybites/Lib_maybitesMXJ/wiki",
+	"filelist" : 	{
+		"patchers" : [ "PattrHubHelper.maxpat", "PattrStoreHelper.maxpat" ],
+		"extras" : [ "home.maxpat" ],
+		"help" : [ "QueScript.maxhelp" ]
+	}
+,
+	"c74install" : 1,
+	"installdate" : -761504152
+}

@@ -12,6 +12,8 @@ import org.w3c.dom.Text;
 
 import com.cycling74.max.Atom;
 
+import ch.maybites.mxj.expression.Expression;
+import ch.maybites.mxj.expression.RunTimeEnvironment;
 import ch.maybites.mxj.quescript.messages.CMsgShuttle;
 import ch.maybites.mxj.quescript.messages.CMsgStop;
 import ch.maybites.mxj.quescript.messages.CMsgTime;
@@ -19,8 +21,6 @@ import ch.maybites.mxj.quescript.messages.CMsgTrigger;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
 import ch.maybites.mxj.utils.JitterObjectArray;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.Expression;
-import ch.maybites.tools.expression.RunTimeEnvironment;
 
 public class CmndQue extends Cmnd{
 	public static String NODE_NAME = "que";

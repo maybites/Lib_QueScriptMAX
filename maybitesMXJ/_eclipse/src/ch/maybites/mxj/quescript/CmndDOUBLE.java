@@ -6,10 +6,10 @@ import org.w3c.dom.Node;
 
 import com.cycling74.max.Atom;
 
+import ch.maybites.mxj.expression.ExpressionVar;
 import ch.maybites.mxj.quescript.messages.CMsgShuttle;
 import ch.maybites.mxj.quescript.messages.ScriptMsgException;
 import ch.maybites.tools.Debugger;
-import ch.maybites.tools.expression.ExpressionVar;
 
 public class CmndDOUBLE extends Cmnd {
 	private static String NODE_NAME = "float";
