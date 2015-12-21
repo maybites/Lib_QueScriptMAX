@@ -25,9 +25,13 @@ public class CmndMessage extends Cmnd {
 	public static String NODE_NAME_TRIGGER 	= "trigger";
 	public static String NODE_NAME_OSC 		= "osc";
 
+	private static String ATTR_SENDTO = "sendto";
+
 	Atom[] myMsg; 
 	
 	ArrayList<String> myVars;
+	
+	String sendto = "default";
 	
 	// TODO REMOVE ONCE Ramp is obsolete
 	// stores the message index in which an interpolator value needs to be set
@@ -44,13 +48,16 @@ public class CmndMessage extends Cmnd {
 	public CmndMessage(CmndInterface _parentNode, String _cmdName){
 		super(_parentNode);
 		super.setCmndName(_cmdName);
-		super.setAttrNames(new String[]{"remote", "local"});
+		super.setAttrNames(new String[]{ATTR_SENDTO});
 		super.setChildNames(new String[]{});
 	}
 
 	public void parse(Node _xmlNode) throws ScriptMsgException{
 		super.parseRaw(_xmlNode);
-		
+
+		if(this.hasAttributeValue(ATTR_SENDTO))
+			sendto = getAttributeValue(ATTR_SENDTO);
+
 		myVars = new ArrayList<String>();
 		
 		parseContentString(super.content);
@@ -65,20 +72,22 @@ public class CmndMessage extends Cmnd {
 		ArrayList<Atom> atoms = new ArrayList<Atom>();
 		ArrayList<Integer> trackValueIndices = new ArrayList<Integer>();
 		ArrayList<Integer> exprValueIndices = new ArrayList<Integer>();
-		boolean isNumber = false;
+		int addedSegment = 0;
+		if(cmdName.equals(NODE_NAME_OSC)){
+			atoms.add(Atom.newAtom(sendto));
+			addedSegment = 1;
+		}
 		for(int i = 0; i < segmts.size(); i++){
 			Atom seg = null;
 			// first try int
 			if(seg == null){
 				try{
 					seg = Atom.newAtom(Integer.parseInt(segmts.get(i)));
-					isNumber = true;
 				} catch (NumberFormatException e){;}
 			} 
 			if(seg == null){
 				try{
 					seg = Atom.newAtom(Float.parseFloat(segmts.get(i)));
-					isNumber = true;
 				} catch (NumberFormatException e){;}
 			}
 			if(seg == null){
@@ -88,19 +97,17 @@ public class CmndMessage extends Cmnd {
 				if(segmts.get(i).startsWith("$")){
 					//stores the index inside the message array in which a track interpolation
 					// value waits for evaluation
-					trackValueIndices.add(i);
+					trackValueIndices.add(i + addedSegment);
 					// <---- DEPRECATED
 				} else if(segmts.get(i).startsWith("{") && segmts.get(i).endsWith("}")){
 					//stores the index inside the message array in which an expression
 					// waits for evaluation
-					exprValueIndices.add(i);
+					exprValueIndices.add(i + addedSegment);
 					// removes the { and } at the beginning and the end
 					seg = Atom.newAtom(segmts.get(i).substring(1, segmts.get(i).length() - 1));
 				}
 			}
 			atoms.add(seg);
-			
-			isNumber = false;
 		}
 		Atom[] atomlist = new Atom[atoms.size()];
 		myMsg =  atoms.toArray(atomlist);

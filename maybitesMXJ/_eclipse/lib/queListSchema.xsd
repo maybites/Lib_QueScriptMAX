@@ -61,13 +61,20 @@
 <xs:attribute name="start" type="xs:string"/> 
 <xs:attribute name="step" type="xs:string"/> 
 <xs:attribute name="vardomain" type="xs:string"/> 
+<xs:attribute name="sendto" type="xs:string" default="default"/> 
 
 <xs:element name="send" type="xs:string"/>
-<xs:element name="osc" type="xs:string"/>
 <xs:element name="print" type="xs:string"/>
 <xs:element name="out" type="xs:string"/>
 <xs:element name="trigger" type="xs:string"/>
 <xs:element name="expr" type="xs:string"/>
+
+<xs:element name="osc">
+	<xs:complexType>
+		<xs:attribute ref="sendto"/> 
+	</xs:complexType>
+</xs:element>
+
 
 <xs:element name="debugger">
 	<xs:complexType>
