@@ -70,7 +70,7 @@
 <xs:element name="expr" type="xs:string"/>
 
 <xs:element name="osc">
-	<xs:complexType>
+	<xs:complexType mixed="true">
 		<xs:attribute ref="sendto"/> 
 	</xs:complexType>
 </xs:element>

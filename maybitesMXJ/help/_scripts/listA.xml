@@ -3,7 +3,6 @@
 	<que name="que_1" loop="no">
 		<timer/><!-- timer starts the internal timer -->
 		<expr>{global1 = if(global1==0, 45, global1)}</expr>
-		<expr>{global1 = if(global1==0, 45, global1)}</expr>
 		<osc>/test/address message {global1}</osc>
 		<if true="{global1 lt 50}">
 			<print>/queOne global1 is {global1}</print>

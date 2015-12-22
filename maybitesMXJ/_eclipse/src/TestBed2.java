@@ -23,6 +23,9 @@ public class TestBed2 {
 		
 
 		try{
+			double eff = 10.0;
+			System.out.print(Double.toString(eff));
+			
 			ExpressionVar result = null;
 			
 			RunTimeEnvironment rt = new RunTimeEnvironment();

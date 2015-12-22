@@ -138,6 +138,10 @@ public class QueManager implements CmndInterface{
 		globalExprEnvironment.setPublicVariable(name, value);
 	}
 	
+	protected void clearGlobalVars(){
+		globalExprEnvironment.getPublicVars().clear();
+	}
+	
 	protected void play(String _queName){
 		if(scriptNodes.containsKey(_queName)){
 			if(debugMode)

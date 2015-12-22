@@ -21,6 +21,10 @@ public class Que extends MaxObject implements OutputInterface{
 	
 	ArrayList<String[]> selfCommands;
 	
+	int viewplayingquesFreq = 0;
+	
+	long lastviewTime = 0;
+	
 	public Que(Atom[] _args){
 		
 		declareInlets(new int[]{DataTypes.ALL, DataTypes.ALL});
@@ -88,8 +92,14 @@ public class Que extends MaxObject implements OutputInterface{
 			}
 		}
 		
+		long timer = System.currentTimeMillis();
 		// and then keep on going
 		queManager.bang();
+		
+		if(viewplayingquesFreq > 0 && lastviewTime + (1000 / viewplayingquesFreq) < timer ){
+			lastviewTime = timer;
+			outlet(OUTLET_INFO, "playtime", System.currentTimeMillis() - timer);
+		}
 	}
 	
 	public void var(String name, float val){
@@ -102,6 +112,14 @@ public class Que extends MaxObject implements OutputInterface{
 	
 	public void autostart(int _autostart){
 		queManager.autostart(_autostart);
+	}
+
+	public void reset(){
+		queManager.clearGlobalVars();
+	}
+
+	public void viewplayingques(int _frequency){
+		viewplayingquesFreq = _frequency;
 	}
 	
 	public void play(String queName){

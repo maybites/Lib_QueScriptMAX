@@ -145,7 +145,10 @@ public class ExpressionVar {
 	public String getStringValue(){
 		if(!isNumber)
 			return sValue;
-		return ""+ dValue;
+	    if(dValue == (long) dValue)
+	        return String.format("%d",(long)dValue);
+	    else
+	        return String.format("%s",dValue);
 	}
 	
 	/**
