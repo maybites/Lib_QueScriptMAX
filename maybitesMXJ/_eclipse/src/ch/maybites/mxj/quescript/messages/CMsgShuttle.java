@@ -86,17 +86,10 @@ public class CMsgShuttle {
 	}
 	
 	/**
-	 * set the debugging off
-	 */
-	public void setDebugOff(){
-		debugMode = false;
-	}
-
-	/**
 	 * set to debugging info
 	 */
-	public void setDebugInfo(){
-		debugMode = true;
+	public void setDebugInfo(boolean _debug){
+		debugMode = _debug;
 	}
 	
 	public boolean isDebugging(){

@@ -110,9 +110,7 @@ public class CmndQue extends Cmnd{
 		executionShuttle.execute();
 //		Debugger.verbose("Script-Command Que", "...executed: " + this.queName);	
 		
-		// and set the debug mode
-		if(debugMode)
-			executionShuttle.setDebugInfo();
+		executionShuttle.setDebugInfo(debugMode);
 
 		// pass the info of how many lines are in this que
 		getOutput().outputInfoMsg("quename", new Atom[]{Atom.newAtom(queName)});

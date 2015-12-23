@@ -582,7 +582,11 @@ public class Expression {
 
 		Stack<ExpressionVar> stack = new Stack<ExpressionVar>();
 
+		int domainToken = 0;
+				
 		for (String token : rpn) {
+			domainToken = getDomainAssignmentPrefix(token);
+			token = token.substring(domainToken);
 			if (rt.operators.containsKey(token)) {
 				ArrayList<ExpressionVar> p = new ArrayList<ExpressionVar>();
 				ExpressionVar v1 = stack.pop();
@@ -590,14 +594,6 @@ public class Expression {
 				p.add(v2);
 				p.add(v1);
 				stack.push(new ExpressionVar(rt.operators.get(token), p));
-			}  else if (rt.privateVars.containsKey(removeDomainAssignementPrefix(token))) {
-				stack.push(rt.privateVars.get(removeDomainAssignementPrefix(token)));
-			} else if (rt.protectedVars.containsKey(removeDomainAssignementPrefix(token))) {
-				stack.push(rt.protectedVars.get(removeDomainAssignementPrefix(token)));
-			} else if (rt.publicVars.containsKey(removeDomainAssignementPrefix(token))) {
-				stack.push(rt.publicVars.get(removeDomainAssignementPrefix(token)));
-			} else if (rt.staticVars.containsKey(token)) {
-				stack.push(rt.staticVars.get(token));
 			} else if (rt.functions.containsKey(token.toUpperCase(Locale.ROOT))) {
 				Function f = rt.functions.get(token.toUpperCase(Locale.ROOT));
 				ArrayList<ExpressionVar> p = new ArrayList<ExpressionVar>(
@@ -622,27 +618,44 @@ public class Expression {
 			} else if(isNumber(token)){
 				// its a number
 				stack.add(new ExpressionVar(token));
+			} else if (rt.staticVars.containsKey(token)) {
+				stack.push(rt.staticVars.get(token));
+			} else if (rt.privateVars.containsKey(token)) {
+				stack.push(rt.privateVars.get(token));
+			} else if(domainToken == 2){
+				// the variable doesnt exist in the private domain, but the assignment 
+				// wants it inside this domain, then it shall be created
+				ExpressionVar newvar = new ExpressionVar();
+				rt.setPrivateVariable(token, newvar);				
+				stack.add(newvar);
+			} else if (rt.protectedVars.containsKey(token)) {
+				stack.push(rt.protectedVars.get(token));
+			} else if(domainToken == 1){
+				// the variable doesnt exist in the protected domain, but the assignment 
+				// wants it inside this domain, then it shall be created
+				ExpressionVar newvar = new ExpressionVar();
+				rt.setProtectedVariable(token, newvar);				
+				stack.add(newvar);
+			} else if (rt.publicVars.containsKey(token)) {
+				stack.push(rt.publicVars.get(token));
 			} else {
 				// its variable that has not been definied yet.
-				ExpressionVar newvar = new ExpressionVar(0);
-				if(token.startsWith("??"))
-					rt.setPrivateVariable(token.substring(2), newvar);
-				else if(token.startsWith("?"))
-					rt.setProtectedVariable(token.substring(1), newvar);
-				else
-					rt.setPublicVariable(token, newvar);					
+				ExpressionVar newvar = new ExpressionVar();
+				rt.setPublicVariable(token, newvar);					
 				stack.add(newvar);
 			}
 		}
 		return stack.pop().setExpression(expression);
 	}
-	
-	private String removeDomainAssignementPrefix(String var){
-		if(var.startsWith("??") || var.startsWith("!!"))
-			return var.substring(2);
-		else if(var.startsWith("?") || var.startsWith("!"))
-			return var.substring(1);
-		else return var;
+
+	private int getDomainAssignmentPrefix(String var){
+		if(var.startsWith("??") || var.startsWith("!!")){
+			return 2;
+		}
+		else if(var.startsWith("?") || var.startsWith("!")){
+			return 1;
+		}
+		else return 0;
 	}
 
 	/**

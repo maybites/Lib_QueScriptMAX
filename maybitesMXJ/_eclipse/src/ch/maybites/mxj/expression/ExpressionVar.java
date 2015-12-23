@@ -32,9 +32,14 @@ import ch.maybites.mxj.expression.Expression.ExpressionException;
 import ch.maybites.mxj.expression.RunTimeEnvironment.Operation;
 
 public class ExpressionVar {
+	private static final String NULL_VALUE = "NULL";
+
 	public static final ExpressionVar ONE = new ExpressionVar(1);
 	public static final ExpressionVar ZERO = new ExpressionVar(0);
-	
+	public static final ExpressionVar NULL = new ExpressionVar();
+	public static final ExpressionVar PI = new ExpressionVar(
+			3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679);
+		
 	private double dValue;
 	private String sValue;
 	
@@ -43,10 +48,20 @@ public class ExpressionVar {
 	
 	public boolean isNumber = false;
 	
+	// stores the expression if this instance is the result of an Expression.parse(rt)
 	private String expr = null;
 	
+	// tells if this instance is used as a variable inside RunTimeEnvironment.
 	protected boolean isUsedAsVariable = false;
-	
+
+	/**
+	 * Creates an ExpressionVar with a NULL - Value
+	 */
+	public ExpressionVar(){
+		this.sValue = NULL_VALUE;
+		isNumber = false;
+	}
+
 	/**
 	 * Creates an ExpressionVar with the nummeric value of 
 	 * @param value
@@ -75,11 +90,21 @@ public class ExpressionVar {
 		isNumber = true;
 	}
 	
+	/**
+	 * Used by RunTimeEnvironment to tell if this instance is a variable
+	 * @return
+	 */
 	protected ExpressionVar setUsedAsVariable(){
 		isUsedAsVariable = true;
 		return this;
 	}
 	
+	/**
+	 * Used by Expression to store the expression if this instance is the result of
+	 * a parse() operation
+	 * @param expr
+	 * @return
+	 */
 	protected ExpressionVar setExpression(String expr){
 		this.expr = expr;
 		return this;

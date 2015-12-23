@@ -30,15 +30,8 @@ public class CMsgTime {
 	 * @throws ScriptMsgException 
 	 */
 	public CMsgTime(ExpressionVar mills, long diffMills) throws ScriptMsgException{
-		try {
-			if(!mills.eval().isNumber){
-				parse(mills.eval().getStringValue());
-			}
-			this.mills = mills;
-			this.diffMills = diffMills;
-		} catch (ExpressionException e) {
-			throw new ScriptMsgException("Invalid expression for setting time: " + e.getMessage());
-		}
+		this.mills = mills;
+		this.diffMills = diffMills;
 	}
 
 	/**

@@ -1,7 +1,5 @@
 package ch.maybites.mxj.quescript;
 
-import java.util.Enumeration;
-
 import org.w3c.dom.Node;
 
 import com.cycling74.max.Atom;

@@ -37,8 +37,6 @@ public class RunTimeEnvironment {
 	/**
 	 * Definition of PI as a constant, can be used in expressions as variable.
 	 */
-	public static final ExpressionVar PI = new ExpressionVar(
-			3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679);
 
 	/**
 	 * All defined variables with name and value.
@@ -380,7 +378,8 @@ public class RunTimeEnvironment {
 			}
 		});
 
-		setStaticVariable("PI", PI);
+		setStaticVariable("NULL", ExpressionVar.NULL);
+		setStaticVariable("PI", ExpressionVar.PI);
 		setStaticVariable("TRUE", ExpressionVar.ONE);
 		setStaticVariable("FALSE", ExpressionVar.ZERO);
 	}
@@ -643,10 +642,14 @@ public class RunTimeEnvironment {
 		if(staticVars.containsKey(value))
 			staticVars.get(value).set(value);
 		else
-			staticVars.put(variable, value.setUsedAsVariable());
+			staticVars.put(variable, value);
 	}
 
 	protected abstract class Operation {
+		/**
+		 * Name of the Operation
+		 */
+		protected String oper;
 		/**
 		 * Implementation for an Operation.
 		 * 
@@ -666,10 +669,6 @@ public class RunTimeEnvironment {
 	 */
 	protected abstract class Function extends Operation{
 		/**
-		 * Name of this function.
-		 */
-		private String name;
-		/**
 		 * Number of parameters expected for this function. 
 		 * <code>-1</code> denotes a variable number of parameters.
 		 */
@@ -685,12 +684,12 @@ public class RunTimeEnvironment {
 		 *            <code>-1</code> denotes a variable number of parameters.
 		 */
 		public Function(String name, int numParams) {
-			this.name = name.toUpperCase(Locale.ROOT);
+			this.oper = name.toUpperCase(Locale.ROOT);
 			this.numParams = numParams;
 		}
 
 		public String getName() {
-			return name;
+			return oper;
 		}
 
 		public int getNumParams() {
@@ -707,10 +706,6 @@ public class RunTimeEnvironment {
 	 * its name (pattern), precedence and if it is left- or right associative.
 	 */
 	protected abstract class Operator extends Operation{
-		/**
-		 * This operators name (pattern).
-		 */
-		private String oper;
 		/**
 		 * Operators precedence.
 		 */

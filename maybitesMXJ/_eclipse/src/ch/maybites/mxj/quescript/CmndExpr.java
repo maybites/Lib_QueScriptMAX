@@ -34,7 +34,7 @@ public class CmndExpr extends Cmnd {
 		try {
 			variable = new Expression(super.content, "{", "}").parse(rt);
 		} catch (ExpressionException e) {
-			throw new ScriptMsgException("Script - Command <Var>: Value Expression: " + e.getMessage());
+			throw new ScriptMsgException("QueScript - Command <expr>: Value Expression: " + e.getMessage());
 		}
 		if(getDebugMode())
 			Debugger.verbose("QueScript - NodeFactory", "que("+parentNode.getQueName()+") "+new String(new char[getLevel()]).replace('\0', '_')+"created expr-Comnd = "+ super.content);	
@@ -58,7 +58,7 @@ public class CmndExpr extends Cmnd {
 		try {
 			variable.eval();
 		} catch (ExpressionException e) {
-			Debugger.error("QueScript que("+parentNode.getQueName()+") - Command <Var>: Value Expression", e.getMessage());
+			Debugger.error("QueScript que("+parentNode.getQueName()+") - Command <expr>: Value Expression", e.getMessage());
 		}
 	}
 
