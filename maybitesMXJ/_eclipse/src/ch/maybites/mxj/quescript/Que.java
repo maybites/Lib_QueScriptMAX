@@ -24,9 +24,7 @@ public class Que extends MaxObject implements OutputInterface{
 	int viewplayingquesFreq = 0;
 	
 	long lastviewTime = 0;
-	
-	String fileName;
-	
+		
 	public Que(Atom[] _args){
 		
 		declareInlets(new int[]{DataTypes.ALL, DataTypes.ALL});
@@ -41,8 +39,6 @@ public class Que extends MaxObject implements OutputInterface{
 	 * @param _fileName
 	 */
 	public void read(String _fileName){
-		fileName = _fileName;
-		
 		// pass on the scriptnode my instance so all child nodes 
 		// have a way to interface with me.
 		queManager.setOutput(this);
@@ -143,10 +139,7 @@ public class Que extends MaxObject implements OutputInterface{
 	 * clears all global Variables, stops all que's and reloads the script
 	 */
 	public void reset(){
-		queManager.clearGlobalVars();
-		queManager.stop();
-		if(fileName != null)
-			queManager.load(fileName);
+		queManager.reset();
 	}
 
 	/**

@@ -86,7 +86,9 @@ public class QueManager implements CmndInterface{
 	boolean debugMode = false;
 	
 	boolean autostart = false;
-	
+
+	String fileName;
+
 	RunTimeEnvironment globalExprEnvironment;
 		
 	protected QueManager(){
@@ -140,6 +142,14 @@ public class QueManager implements CmndInterface{
 	
 	protected void clearGlobalVars(){
 		globalExprEnvironment.getPublicVars().clear();
+	}
+	
+	protected void reset(){
+		clearGlobalVars();
+		stop();
+		if(fileName != null)
+			load(fileName);
+
 	}
 	
 	protected void play(String _queName){
@@ -354,10 +364,7 @@ public class QueManager implements CmndInterface{
 	protected void trigger(CMsgTrigger _trigger){
 		triggerQueue.add(_trigger);
 	}
-	
-	protected void reset(){
-	}
-	
+		
 	protected void refresh(){
 	}
 	
@@ -380,7 +387,7 @@ public class QueManager implements CmndInterface{
 				e.remove();
 			}
 		}
-			
+				
 		String  firstQueName = null;
 		
 		File dieXMLDatei = new File(_filepath);
@@ -444,6 +451,8 @@ public class QueManager implements CmndInterface{
 			getOutput().outputDumpMsg("que", Atom.newAtom(new String[]{e.next()}));			
 		}
 		getOutput().outputDumpMsg("quelistdone", null);
+
+		fileName = _filepath;
 	}
 
 
