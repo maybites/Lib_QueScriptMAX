@@ -48,12 +48,10 @@ public class CmndMessage extends Cmnd {
 	public CmndMessage(CmndInterface _parentNode, String _cmdName){
 		super(_parentNode);
 		super.setCmndName(_cmdName);
-		super.setAttrNames(new String[]{ATTR_SENDTO});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 
 		if(this.hasAttributeValue(ATTR_SENDTO))
 			sendto = getAttributeValue(ATTR_SENDTO);
@@ -147,7 +145,7 @@ public class CmndMessage extends Cmnd {
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		try {
 			// go through all the found expressions
 			for(int i = 0; i < expressions.length; i++){
@@ -162,7 +160,7 @@ public class CmndMessage extends Cmnd {
 
 		// and then do it for all the children
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(rt);
+			child.setup(rt);
 		}
 	}
 
@@ -184,7 +182,7 @@ public class CmndMessage extends Cmnd {
 	/**
 	 * Sends the message after it takes all the interpolated values.
 	 */
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		//----> DEPRECATED
 		// TODO REMOVE ONCE Ramp is obsolete
 		for(int i = 0; i < trackValueInterpolators.length; i++)
@@ -209,9 +207,9 @@ public class CmndMessage extends Cmnd {
 	public void store(Node _parentElement) {
 	}
 	
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
-			lockLessStepper(_msg);
+			lockLessBang(_msg);
 			if(cmdName.equals(NODE_NAME_TRIGGER)){
 				sendInternalMessage();
 			}

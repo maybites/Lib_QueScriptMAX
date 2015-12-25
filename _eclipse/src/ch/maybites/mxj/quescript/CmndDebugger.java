@@ -28,18 +28,16 @@ public class CmndDebugger extends Cmnd {
 	public CmndDebugger(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_SHOWVARDOMAIN});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		prt = rt;
 
 		if(getAttributeValue(ATTR_SHOWVARDOMAIN) != null){
@@ -62,13 +60,13 @@ public class CmndDebugger extends Cmnd {
 
 	}
 
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
-			lockLessStepper(_msg);
+			lockLessBang(_msg);
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		if(getDebugMode()){
 			HashMap<String, ExpressionVar> locals = (HashMap<String, ExpressionVar>) prt.getPrivateVars();
 			HashMap<String, ExpressionVar> que = (HashMap<String, ExpressionVar>) prt.getProtectedVars();

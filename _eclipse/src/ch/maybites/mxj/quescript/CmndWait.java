@@ -48,21 +48,19 @@ public class CmndWait extends Cmnd {
 	public CmndWait(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_RAMP, ATTR_UNTIL, ATTR_WHILE, ATTR_COMPLEX, ATTR_WATCH, ATTR_HOURGLASS, ATTR_TRIGGER, ATTR_COUNTDOWN, ATTR_ANIM, ATTR_TIMER});
-		super.setChildNames(new String[]{"wait"});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		if(getAttributes().size() == 1){
-			String smode = getAttributes().get(0);
+			String smode = getAttributes().iterator().next();
 			try {
 				if(smode.equals(ATTR_COUNTDOWN)){
 					mode = MODE_COUNTDOWN;
@@ -112,7 +110,7 @@ public class CmndWait extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(mode != -1){
 			if(_msg.isInStopMode()){
 				myCountdown = null;
@@ -126,7 +124,7 @@ public class CmndWait extends Cmnd {
 				if(logic(_msg)){
 					for(Cmnd child : getChildren()){
 						if(!child.isCmndName(NODE_NAME))
-							child.stepper(_msg);
+							child.bang(_msg);
 					}
 					_msg.freeWaitLock(this);
 					getOutput().outputInfoMsg("info", new Atom[]{Atom.newAtom("-")});
@@ -135,7 +133,7 @@ public class CmndWait extends Cmnd {
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	protected boolean logic(CMsgShuttle _msg){
 		switch(mode){

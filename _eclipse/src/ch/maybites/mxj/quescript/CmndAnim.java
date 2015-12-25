@@ -64,24 +64,12 @@ public class CmndAnim extends Cmnd {
 	public CmndAnim(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_LOOP, ATTR_NAME, ATTR_DURATION, ATTR_FADEOUT});
-		super.setChildNames(new String[]{
-				CmndMessage.NODE_NAME_OUT,
-				CmndMessage.NODE_NAME_PRINT,
-				CmndMessage.NODE_NAME_SEND,
-				CmndMessage.NODE_NAME_TRIGGER,
-				CmndMessage.NODE_NAME_OSC,
-				CmndTrack.NODE_NAME,
-				CmndKeys.NODE_NAME,
-				CmndExpr.NODE_NAME,
-				CmndIf.NODE_NAME,
-				CmndDebugger.NODE_NAME});
 		
     	privateExprEnvironment = new RunTimeEnvironment();
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		
 		if(this.getAttributeValue(ATTR_LOOP).equals(ATTR_LOOP_VAL_NO))
 			loop = LOOP_MODE_NONE;
@@ -96,7 +84,7 @@ public class CmndAnim extends Cmnd {
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{		
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{		
 		if(getDebugMode())
 			Debugger.verbose("QueScript - NodeFactory", "que("+parentNode.getQueName()+") "+new String(new char[getLevel()]).replace('\0', '_')+" created Anim Comnd: name='" + name +"'");	
 
@@ -150,7 +138,7 @@ public class CmndAnim extends Cmnd {
 		
 		// Make sure the que- and local- variables are created before the children are parsed
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(privateExprEnvironment);
+			child.setup(privateExprEnvironment);
 		}
 
 		sendCommands = new ArrayList<Cmnd>();
@@ -174,7 +162,7 @@ public class CmndAnim extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(_msg.isInStopMode() && 
 				(runMode != EXECUTE_OFF)){
 			// if there is a stop message (called by the stop command or the interruption
@@ -283,7 +271,7 @@ public class CmndAnim extends Cmnd {
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	private void execute(float _normalizedTime, CMsgShuttle _msg){
 		_normalizedTime = (palindromDirection)? 1.0f - _normalizedTime: _normalizedTime;
@@ -295,7 +283,7 @@ public class CmndAnim extends Cmnd {
 			e.next().calculate(_normalizedTime);
 		
 		for(Cmnd snd: sendCommands)
-			snd.lockLessStepper(_msg);		
+			snd.lockLessBang(_msg);		
 	}
 	
 	private void setFade2Mode(int _mode){

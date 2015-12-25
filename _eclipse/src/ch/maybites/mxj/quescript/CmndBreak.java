@@ -11,12 +11,10 @@ public class CmndBreak extends Cmnd {
 	public CmndBreak(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName("break");
-		super.setAttrNames(new String[]{"watch", "hourglass", "trigger", "countdown", "ramp", "timer"});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		Debugger.verbose("QueScript - NodeFactory", "created Break Comnd");			
 	}
 
@@ -27,12 +25,12 @@ public class CmndBreak extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	@Override
 	public void resume(long _timePassed) {

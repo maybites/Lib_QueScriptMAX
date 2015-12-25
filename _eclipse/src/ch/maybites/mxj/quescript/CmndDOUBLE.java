@@ -32,14 +32,12 @@ public class CmndDOUBLE extends Cmnd {
 	public CmndDOUBLE(CmndInterface _parentNode, String _cmndName){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{"fadeto"});
-		super.setChildNames(new String[]{});
 		floatName = _cmndName;
 		calculatedValue = new ExpressionVar(0);
 	}
 	
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 				
 		keyName = "$"+ floatName;
 				
@@ -135,12 +133,12 @@ public class CmndDOUBLE extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	@Override
 	public void resume(long _timePassed) {

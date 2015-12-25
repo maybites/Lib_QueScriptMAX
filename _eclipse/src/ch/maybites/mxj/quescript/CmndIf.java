@@ -31,29 +31,10 @@ public class CmndIf extends Cmnd {
 	public CmndIf(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_TRUE, ATTR_FALSE});
-		super.setChildNames(new String[]{
-				CmndElse.NODE_NAME, 
-				CmndIf.NODE_NAME,
-				CmndExpr.NODE_NAME,
-				CmndAnim.NODE_NAME,
-				CmndWhile.NODE_NAME,
-				CmndMessage.NODE_NAME_OSC, 
-				CmndMessage.NODE_NAME_OUT, 
-				CmndMessage.NODE_NAME_PRINT, 
-				CmndMessage.NODE_NAME_SEND, 
-				CmndMessage.NODE_NAME_TRIGGER,
-				CmndDebugger.NODE_NAME,
-				CmndInternal.NODE_NAME_PAUSE, 
-				CmndInternal.NODE_NAME_PLAY, 
-				CmndInternal.NODE_NAME_RESUME,
-				CmndInternal.NODE_NAME_SHUTDOWN,
-				CmndInternal.NODE_NAME_STOP,
-				CmndFade.NODE_NAME});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		
 		//if there is a nested <anim> node inside this if, it checks if there is another <anim> node
 		// further down the tree towards the root
@@ -77,10 +58,10 @@ public class CmndIf extends Cmnd {
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		String smode = "";
 		if(getAttributes().size() == 1){
-			smode = getAttributes().get(0);
+			smode = getAttributes().iterator().next();
 			try {
 				if(smode.equals(ATTR_TRUE)){
 					mode = MODE_TRUE;
@@ -102,7 +83,7 @@ public class CmndIf extends Cmnd {
 
 		// Make sure the que- and local- variables are created before the children are parsed
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(rt);
+			child.setup(rt);
 		}
 	}
 	
@@ -113,18 +94,18 @@ public class CmndIf extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
 			try {
 				if(ifCondition.eval().getNumberValue() == mode){
 					for(Cmnd child : getChildren()){
 						if(!child.isCmndName(CmndElse.NODE_NAME))
-							child.stepper(_msg);
+							child.bang(_msg);
 					}
 				} else {
 					for(Cmnd child : getChildren()){
 						if(child.isCmndName(CmndElse.NODE_NAME))
-							child.stepper(_msg);
+							child.bang(_msg);
 					}
 				}
 			} catch (ExpressionException e) {
@@ -133,17 +114,17 @@ public class CmndIf extends Cmnd {
 		}
 	}
 	
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		try {
 			if(ifCondition.eval().getNumberValue() == mode){
 				for(Cmnd child : getChildren()){
 					if(!child.isCmndName(CmndElse.NODE_NAME))
-						child.lockLessStepper(_msg);
+						child.lockLessBang(_msg);
 				}
 			} else {
 				for(Cmnd child : getChildren()){
 					if(child.isCmndName(CmndElse.NODE_NAME))
-						child.lockLessStepper(_msg);
+						child.lockLessBang(_msg);
 				}
 			}
 		} catch (ExpressionException e) {

@@ -65,29 +65,22 @@ public class CmndRamp extends Cmnd {
 	public CmndRamp(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_LOOP, ATTR_NAME, ATTR_DURATION, ATTR_FADEOUT});
-		super.setChildNames(new String[]{
-				CmndMessage.NODE_NAME_OUT,
-				CmndMessage.NODE_NAME_PRINT,
-				CmndMessage.NODE_NAME_SEND,
-				CmndMessage.NODE_NAME_TRIGGER,
-				"keys", "f1", "f2", "f3", "f4", "break"});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		privateExprEnvironment.setPublicVars(rt.getPublicVars());
 		privateExprEnvironment.setProtectedVars(rt.getProtectedVars());
 
 		// and then do it for all the children
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(privateExprEnvironment);
+			child.setup(privateExprEnvironment);
 		}
 		
 		if(this.getAttributeValue(ATTR_LOOP).equals(ATTR_LOOP_VAL_NO))
@@ -158,7 +151,7 @@ public class CmndRamp extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(_msg.isInStopMode() && 
 				(runMode != EXECUTE_OFF)){
 			// if there is a stop message (called by the stop command or the interruption
@@ -267,7 +260,7 @@ public class CmndRamp extends Cmnd {
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	private void execute(float _normalizedTime, CMsgShuttle _msg){
 		_normalizedTime = (palindromDirection)? 1.0f - _normalizedTime: _normalizedTime;
@@ -279,7 +272,7 @@ public class CmndRamp extends Cmnd {
 			e.nextElement().calculate(_normalizedTime);
 		
 		for(CmndMessage snd: sendCommands)
-			snd.lockLessStepper(_msg);		
+			snd.lockLessBang(_msg);		
 	}
 	
 	private void setFade2Mode(int _mode){

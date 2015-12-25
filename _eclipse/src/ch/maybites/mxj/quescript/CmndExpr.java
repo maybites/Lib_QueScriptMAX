@@ -19,18 +19,16 @@ public class CmndExpr extends Cmnd {
 	public CmndExpr(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		try {
 			variable = new Expression(super.content, "{", "}").parse(rt);
 		} catch (ExpressionException e) {
@@ -48,13 +46,13 @@ public class CmndExpr extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
-			lockLessStepper(_msg);
+			lockLessBang(_msg);
 		}
 	}
 	
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		try {
 			variable.eval();
 		} catch (ExpressionException e) {

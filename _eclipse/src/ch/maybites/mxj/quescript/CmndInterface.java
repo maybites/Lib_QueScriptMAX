@@ -16,7 +16,7 @@ public interface CmndInterface {
 
 	public int getLine();
 	
-	public void parse(Node _xmlNode)throws ScriptMsgException;
+	public void build(Node _xmlNode)throws ScriptMsgException;
 
 	//public void messagePass(CMsgTrigger _msg);
 

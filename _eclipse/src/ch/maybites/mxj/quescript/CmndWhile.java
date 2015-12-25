@@ -35,26 +35,10 @@ public class CmndWhile extends Cmnd {
 	public CmndWhile(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_REPEAT, ATTR_START, ATTR_NAME, ATTR_STEP});
-		super.setChildNames(new String[]{
-				CmndIf.NODE_NAME,
-				CmndExpr.NODE_NAME,
-				CmndMessage.NODE_NAME_OSC, 
-				CmndMessage.NODE_NAME_OUT, 
-				CmndMessage.NODE_NAME_PRINT, 
-				CmndMessage.NODE_NAME_SEND, 
-				CmndMessage.NODE_NAME_TRIGGER,
-				CmndDebugger.NODE_NAME,
-				CmndInternal.NODE_NAME_PAUSE, 
-				CmndInternal.NODE_NAME_PLAY, 
-				CmndInternal.NODE_NAME_RESUME,
-				CmndInternal.NODE_NAME_SHUTDOWN,
-				CmndInternal.NODE_NAME_STOP,
-				CmndFade.NODE_NAME});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		
 		//if there is a nested <anim> node inside this if, it checks if there is another <anim> node
 		// further down the tree towards the root
@@ -78,7 +62,7 @@ public class CmndWhile extends Cmnd {
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		RunTimeEnvironment prt = new RunTimeEnvironment();
 
 		prt.setPublicVars(rt.getPublicVars());
@@ -104,7 +88,7 @@ public class CmndWhile extends Cmnd {
 
 		// Make sure the que- and local- variables are created before the children are parsed
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(prt);
+			child.setup(prt);
 		}
 	}
 	
@@ -115,7 +99,7 @@ public class CmndWhile extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(_msg.isInStopMode())
 			running = false;
 		if(_msg.hasFadeMessage(name))
@@ -128,7 +112,7 @@ public class CmndWhile extends Cmnd {
 				}
 				if(ifCondition.eval().getNumberValue() >= 1){
 					for(Cmnd child : getChildren()){
-						child.lockLessStepper(_msg);
+						child.lockLessBang(_msg);
 					}
 					// if there is a step expression, 
 					// it will be executed after all the <while> children
@@ -147,7 +131,7 @@ public class CmndWhile extends Cmnd {
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	@Override
 	public void resume(long _timePassed) {

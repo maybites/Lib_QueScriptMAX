@@ -13,18 +13,16 @@ public class CmndTimer extends Cmnd {
 	public CmndTimer(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		if(getDebugMode())
 			Debugger.verbose("QueScript - NodeFactory", "que("+parentNode.getQueName()+") "+new String(new char[getLevel()]).replace('\0', '_')+" created "+cmdName+"-Comnd");			
 	}
@@ -35,7 +33,7 @@ public class CmndTimer extends Cmnd {
 
 	}
 
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
 			_msg.setTimer();
 			if(_msg.isDebugging())
@@ -43,7 +41,7 @@ public class CmndTimer extends Cmnd {
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	@Override
 	public void resume(long _timePassed) {

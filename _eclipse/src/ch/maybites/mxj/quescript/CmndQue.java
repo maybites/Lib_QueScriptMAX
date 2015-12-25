@@ -44,33 +44,12 @@ public class CmndQue extends Cmnd{
 	protected CmndQue(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_NAME, ATTR_LOOP});
-		super.setChildNames(new String[]{
-				CmndMessage.NODE_NAME_OSC,
-				CmndMessage.NODE_NAME_OUT,
-				CmndMessage.NODE_NAME_PRINT,
-				CmndMessage.NODE_NAME_SEND,
-				CmndMessage.NODE_NAME_TRIGGER,
-				CmndInternal.NODE_NAME_PAUSE, 
-				CmndInternal.NODE_NAME_PLAY, 
-				CmndInternal.NODE_NAME_RESUME,
-				CmndInternal.NODE_NAME_SHUTDOWN,
-				CmndInternal.NODE_NAME_STOP,
-				CmndAnim.NODE_NAME,
-				CmndExpr.NODE_NAME,
-				CmndWait.NODE_NAME,
-				CmndFade.NODE_NAME,
-				CmndTimer.NODE_NAME,
-				CmndIf.NODE_NAME,
-				CmndWhile.NODE_NAME,
-				CmndDebugger.NODE_NAME,
-				"ramp", "or", "and"});
 		
     	localExprEnvironment = new RunTimeEnvironment();
 	}
 	
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 
 		isLooping = (this.getAttributeValue(ATTR_LOOP).equals(ATTR_LOOP_VAL_NO))?false: true;
 		
@@ -83,14 +62,14 @@ public class CmndQue extends Cmnd{
 	 * takes the global Expression-runtime-environment and modifies its own 
 	 * local Expression-runtime-environment
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		if(getDebugMode())
 			Debugger.verbose("QueScript - NodeFactory", "... created Que:" + queName);	
 
 		localExprEnvironment.setPublicVars(rt.getPublicVars());
 		localExprEnvironment.setProtectedVariable("$TIMER", 0);
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(localExprEnvironment);
+			child.setup(localExprEnvironment);
 		}
 	}
 	
@@ -104,7 +83,7 @@ public class CmndQue extends Cmnd{
 		if(executionShuttle.isInExecution() || executionShuttle.isInShutDownMode()){
 //			Debugger.verbose("Script-Command Que", "... stopped: " + this.queName);	
 			executionShuttle.stop();
-			stepper(executionShuttle);
+			bang(executionShuttle);
 		}
 		// and now it can be restarted
 		executionShuttle.execute();
@@ -163,7 +142,7 @@ public class CmndQue extends Cmnd{
 	 */
 	public void stop(){
 		executionShuttle.stop();			
-		stepper(executionShuttle);
+		bang(executionShuttle);
 		executionShuttle.off();
 		isPlaying = false;
 		if(executionShuttle.isDebugging())
@@ -182,7 +161,7 @@ public class CmndQue extends Cmnd{
 					executionShuttle.addMessage(trgger);
 
 				executionShuttle.frameBang(localExprEnvironment);
-				stepper(executionShuttle);
+				bang(executionShuttle);
 				// if the que is over and no looping is set, shutdown this que
 				if(!executionShuttle.isWaitLocked() && !isLooping){
 					executionShuttle.shutDown();
@@ -192,7 +171,7 @@ public class CmndQue extends Cmnd{
 			}  else if(executionShuttle.isInShutDownMode()){
 				// the create the frame Timer
 				executionShuttle.frameBang(localExprEnvironment);
-				stepper(executionShuttle);
+				bang(executionShuttle);
 				if(!executionShuttle.hasNodesInShutDown()){
 					if(executionShuttle.isDebugging())
 						Debugger.verbose("QueScript", "stop: " + this.queName);	
@@ -209,14 +188,14 @@ public class CmndQue extends Cmnd{
 	public void clear(){
 	}
 
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		for(Cmnd child: super.getChildren()){
-			child.stepper(_msg);
+			child.bang(_msg);
 		}
 		_msg.clearMessages();
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	public String getQueName(){
 		return this.getAttributeValue(ATTR_NAME);

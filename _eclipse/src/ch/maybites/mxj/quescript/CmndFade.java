@@ -24,18 +24,16 @@ public class CmndFade extends Cmnd {
 	public CmndFade(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_NAME, ATTR_FADEOUT});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		// use the attribute or the first value of the key
 		if(this.hasAttributeValue(ATTR_FADEOUT))
 			try {
@@ -57,13 +55,13 @@ public class CmndFade extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
-			lockLessStepper(_msg);
+			lockLessBang(_msg);
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		if(_msg.isDebugging())
 			Debugger.verbose("QueScript", "que("+parentNode.getQueName()+") sent fade message");
 

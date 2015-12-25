@@ -20,18 +20,16 @@ public class CmndKeys extends Cmnd {
 	public CmndKeys(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_TIMING});
-		super.setChildNames(new String[]{});
 	}
 
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		if(this.hasAttributeValue(ATTR_TIMING))
 			timingIsAbsolute = (getAttributeValue(ATTR_TIMING).equals("abs"))? true: false;
 		else
@@ -93,12 +91,12 @@ public class CmndKeys extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 	@Override
 	public void resume(long _timePassed) {

@@ -38,20 +38,18 @@ public class CmndTrack extends Cmnd {
 	public CmndTrack(CmndInterface _parentNode){
 		super(_parentNode);
 		super.setCmndName(NODE_NAME);
-		super.setAttrNames(new String[]{ATTR_NAME, ATTR_FADETO});
-		super.setChildNames(new String[]{});
 		calculatedValue = new ExpressionVar(0);
 	}
 	
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		trackName = getAttributeValue(ATTR_NAME);
 	}
 
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 				
 		List<String> segmts = new ArrayList<String>();
 		Matcher m = Pattern.compile("([^{]\\S*|.+?[{}])\\s*").matcher(super.content);
@@ -99,7 +97,7 @@ public class CmndTrack extends Cmnd {
 
 		// and then do it for all the children
 		for(Cmnd child: this.getChildren()){
-			child.parseExpr(rt);
+			child.setup(rt);
 		}
 	}
 
@@ -174,12 +172,12 @@ public class CmndTrack extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){;}
+	public void lockLessBang(CMsgShuttle _msg){;}
 
 
 	@Override

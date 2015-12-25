@@ -406,14 +406,12 @@ public class QueManager implements CmndInterface{
 			
 			document.getDocumentElement().normalize();	
 			NodeList nodeList = document.getElementsByTagName(BASE_NODE);
-			
-			reset();
-			
+						
 			for(int i = 0; i < nodeList.getLength(); i++){
 				Node node = nodeList.item(i);
 				CmndQue que = new CmndQue(this);
-				que.parse(node);
-				que.parseExpr(globalExprEnvironment);
+				que.build(node);
+				que.setup(globalExprEnvironment);
 				scriptNodes.put(que.getQueName(), que);
 				if(firstQueName == null)
 					firstQueName = que.getQueName();
@@ -567,7 +565,7 @@ public class QueManager implements CmndInterface{
 	}
 
 	@Override
-	public void parse(Node _xmlNode) {
+	public void build(Node _xmlNode) {
 		// TODO Auto-generated method stub
 		
 	}

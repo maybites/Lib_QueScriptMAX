@@ -22,12 +22,10 @@ public class CmndInternal extends Cmnd {
 	public CmndInternal(CmndInterface _parentNode, String _cmdName){
 		super(_parentNode);
 		super.setCmndName(_cmdName);
-		super.setAttrNames(new String[]{ATTR_NAME});
-		super.setChildNames(new String[]{});
 	}
 	
-	public void parse(Node _xmlNode) throws ScriptMsgException{
-		super.parseRaw(_xmlNode);
+	public void build(Node _xmlNode) throws ScriptMsgException{
+		super.build(_xmlNode);
 		
 		// use the attribute or the first value of the key
 		if(this.hasAttributeValue(ATTR_NAME))
@@ -38,7 +36,7 @@ public class CmndInternal extends Cmnd {
 	/**
 	 * Parse the Expressions with the RuntimeEnvironement
 	 */
-	public void parseExpr(RunTimeEnvironment rt)throws ScriptMsgException{
+	public void setup(RunTimeEnvironment rt)throws ScriptMsgException{
 		if(getDebugMode())
 			Debugger.verbose("QueScript - NodeFactory", "que("+parentNode.getQueName()+") "+new String(new char[getLevel()]).replace('\0', '_')+" created internal "+ cmdName +"-Comnd for: " + name);	
 	}
@@ -50,13 +48,13 @@ public class CmndInternal extends Cmnd {
 	}
 
 	@Override
-	public void stepper(CMsgShuttle _msg) {
+	public void bang(CMsgShuttle _msg) {
 		if(!_msg.isWaitLocked()){
-			lockLessStepper(_msg);
+			lockLessBang(_msg);
 		}
 	}
 
-	public void lockLessStepper(CMsgShuttle _msg){
+	public void lockLessBang(CMsgShuttle _msg){
 		if(!_msg.isInStopMode()){
 			this.getOutput().outputSelfCommand(new String[]{cmdName, parentNode.getQueName(), name});
 			if(getDebugMode())
