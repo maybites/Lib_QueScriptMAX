@@ -2,14 +2,14 @@
 	"author" : "Martin Froehlich",
 	"authors" : [  ],
 	"categories" : [ "QueScript" ],
-	"description" : "A collection of usefull max externals.\nProgrammed by Martin Froehlich (http://maybites.ch)",
+	"description" : "A Animation Script Language \nProgrammed by Martin Froehlich (http://maybites.ch)",
 	"displayname" : "",
 	"extends" : "",
 	"extensible" : 0,
 	"homepatcher" : "home.maxpat",
 	"max_version_max" : "none",
 	"max_version_min" : "6.1",
-	"name" : "maybitesMXJ",
+	"name" : "QueScriptMax",
 	"os" : 	{
 		"macintosh" : 		{
 			"platform" : [ "ia32", "x64" ],
@@ -27,9 +27,9 @@
 	"tags" : [ "QueScript" ],
 	"version" : "0.0.1",
 	"versions" : null,
-	"website" : "https://github.com/maybites/Lib_maybitesMXJ/wiki",
+	"website" : "https://github.com/maybites/Lib_QueScriptMax/wiki",
 	"filelist" : 	{
-		"patchers" : [ "PattrHubHelper.maxpat", "PattrStoreHelper.maxpat" ],
+		"patchers" : [ "fileSelector.maxpat" ],
 		"extras" : [ "home.maxpat" ],
 		"help" : [ "QueScript.maxhelp" ]
 	}
