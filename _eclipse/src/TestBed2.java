@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ch.maybites.mxj.expression.Expression;
-import ch.maybites.mxj.expression.ExpressionVar;
-import ch.maybites.mxj.expression.RunTimeEnvironment;
-import ch.maybites.mxj.expression.Expression.ExpressionException;
+import ch.maybites.quescript.expression.Expression;
+import ch.maybites.quescript.expression.ExpressionVar;
+import ch.maybites.quescript.expression.RunTimeEnvironment;
+import ch.maybites.quescript.expression.Expression.ExpressionException;
 
 public class TestBed2 {
 
