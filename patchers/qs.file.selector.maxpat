@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 146.0, 128.0, 744.0, 561.0 ],
+		"rect" : [ 476.0, 159.0, 811.0, 561.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -38,11 +38,37 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-32",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 93.0, 234.0, 65.0, 22.0 ],
+					"style" : "",
+					"text" : "symbol $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 65.0, 47.0, 93.0, 22.0 ],
+					"style" : "",
+					"text" : "routepass bang"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-22",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 8.0, 8.0, 533.0, 20.0 ],
+					"patching_rect" : [ 120.833344, 11.0, 533.0, 20.0 ],
 					"style" : "",
 					"text" : "This abstraction needs at least one argument that is the name of a patcher inside max search path"
 				}
@@ -68,7 +94,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 589.0, 170.0, 107.0, 22.0 ],
+					"patching_rect" : [ 640.166748, 52.0, 107.0, 22.0 ],
 					"style" : "",
 					"text" : "Max TextWrangler"
 				}
@@ -111,7 +137,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 478.0, 119.0, 210.0, 22.0 ],
+					"patching_rect" : [ 588.666748, 120.0, 210.0, 22.0 ],
 					"style" : "",
 					"text" : "routepass types pathstyle pathtype"
 				}
@@ -412,12 +438,12 @@
 				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
-					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 312.0, 88.0, 185.0, 22.0 ],
+					"numinlets" : 6,
+					"numoutlets" : 6,
+					"outlettype" : [ "", "", "", "", "", "" ],
+					"patching_rect" : [ 312.0, 88.0, 295.666718, 22.0 ],
 					"style" : "",
-					"text" : "route subfolder filewatch editwith"
+					"text" : "route subfolder filewatch editwith filename edit"
 				}
 
 			}
@@ -428,7 +454,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 257.0, 52.0, 74.0, 22.0 ],
+					"patching_rect" : [ 257.0, 47.0, 74.0, 22.0 ],
 					"style" : "",
 					"text" : "patcherargs"
 				}
@@ -442,7 +468,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 65.0, 42.0, 30.0, 30.0 ],
+					"patching_rect" : [ 65.0, 11.0, 30.0, 30.0 ],
 					"style" : ""
 				}
 
@@ -562,6 +588,25 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"midpoints" : [ 148.5, 78.0, 321.5, 78.0 ],
+					"source" : [ "obj-15", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-14", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -616,7 +661,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-15", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-2", 0 ]
@@ -744,6 +789,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-32", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -838,7 +892,7 @@
 					"destination" : [ "obj-21", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"source" : [ "obj-7", 3 ]
+					"source" : [ "obj-7", 5 ]
 				}
 
 			}
@@ -848,6 +902,25 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-29", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"midpoints" : [ 542.833374, 327.5, 495.5, 327.5 ],
+					"source" : [ "obj-7", 4 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-32", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-7", 3 ]
 				}
 
 			}
@@ -872,7 +945,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "getPatcherPath.js",
-				"bootpath" : "~/Arbeiten/02_code/max/packages/maybitesMXJ/maybitesMXJ/javascript",
+				"bootpath" : "~/Arbeiten/02_code/max/packages/QueScript/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
