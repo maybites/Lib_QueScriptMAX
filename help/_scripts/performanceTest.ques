@@ -29,7 +29,7 @@
 	</que>
 	<que name="que0" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 0}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 0}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -56,7 +56,7 @@
 	</que>
 	<que name="que1" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 1}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 1}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -82,7 +82,7 @@
 	</que>
 	<que name="que2" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 2}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 2}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -108,7 +108,7 @@
 	</que>
 	<que name="que3" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 3}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 3}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -134,7 +134,7 @@
 	</que>
 	<que name="que4" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 4}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 4}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -160,7 +160,7 @@
 	</que>
 	<que name="que5" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 5}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 5}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -186,7 +186,7 @@
 	</que>
 	<que name="que6" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 6}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 6}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -212,7 +212,7 @@
 	</que>
 	<que name="que7" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 7}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 7}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -238,7 +238,7 @@
 	</que>
 	<que name="que8" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 8}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 8}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
@@ -264,7 +264,7 @@
 	</que>
 	<que name="que9" loop="no">
 		<timer/><!-- timer starts the internal timer -->
-		<expr>{?queNumber = 9}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
+		<expr>{queNumber = 9}</expr><!-- creates a variable 'queNumber' inside the que-domain -->
 		<while name="while" repeat="{$TIMER lt (60 * 1000)}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<send>{'/testbed' + queNumber} while below 1: {whilevar}</send>
