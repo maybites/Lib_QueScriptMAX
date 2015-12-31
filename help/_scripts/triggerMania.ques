@@ -127,7 +127,8 @@
  						
  		<wait trigger="fadeout"/>
 		<fade name="sinemania"/> 
-		<wait while="{whileLoopRunning}"/>
+		<wait faded="sinemania"/>
+		<!--wait while="{whileLoopRunning}"/-->
 		
 		<!--  OBSERVE: 
 					Because a while-animation has no fadeout function, it will stop as soon as the que has 
