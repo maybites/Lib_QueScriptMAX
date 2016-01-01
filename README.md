@@ -8,7 +8,7 @@ This Repository has the structure of a MaxMSP package. There are two suggested w
 1. Create a Folder called 'QueScript' inside the Max packages folder. (~Documents/Max 7/Packages)  
 2. Download the repository, either  
 a) clone this repo into the new folder. If you dont know what [cloning](https://help.github.com/articles/cloning-a-repository/) is:  
-b) download the zip and unpack it into the new folder.  
+b) download the [zip](https://github.com/maybites/Lib_QueScriptMAX/releases) and unpack it into the new folder.  
 3. restart Max  
 
 eh voila: you can now find the package inside your package-manager (Max > File > Show Package Manager) and check out its goodies.
