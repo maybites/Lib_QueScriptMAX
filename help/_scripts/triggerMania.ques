@@ -36,8 +36,8 @@
  				<!--  HOW THIS WORKS
  				 				
  				<expr>{fade... introduces a new variable called 'fade' and since no variable of the same name exists inside
- 				the que- and (anim)-command-domain, it creates it for this (if)-command-domain. Because it is created inside 
- 				this (if)-domain, it will not collide with the other 'fade' variables of the other (if)-domains inside this
+ 				the que- and (anim)-command-domain, it creates it for this (if)-node. Because it is created inside 
+ 				this (if)-node, it will not collide with the other 'fade' variables of the other (if)-nodes inside this
  				animation.
  				
  				fade is used to fadein and fadeout the values. for fading in it uses a simple multiplication:
@@ -77,7 +77,7 @@
  				
  				will be returned.
  				
- 				and fade is set to 0.05 * 1.05.
+ 				and fade is set to ( 0.05 +0.01 )* 1.05.
  				
  				and this goes on until fade has reached gt 1. 
  				You can vary the speed this happens through the factor. 
@@ -127,10 +127,12 @@
  						
  		<wait trigger="fadeout"/>
 		<fade name="sinemania"/> 
-		<wait faded="sinemania"/>
-		<!--wait while="{whileLoopRunning}"/-->
-		
-		<!--  OBSERVE: 
+		<wait complex="add">
+			<wait faded="sinemania"/>
+			<wait while="{whileLoopRunning}"/>
+		</wait>
+			
+		<!--  OBSERVE:
 					Because a while-animation has no fadeout function, it will stop as soon as the que has 
 					reached its end. since we want to let while finish its iterative process, we use
 					the above query to test if the 'whileLoop' is still running. 
