@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 1,
 			"revision" : 0,
-			"architecture" : "x86",
+			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
@@ -428,9 +428,9 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 207.0, 201.0, 87.0, 22.0 ],
+					"patching_rect" : [ 207.0, 201.0, 129.0, 22.0 ],
 					"style" : "",
-					"text" : "sprintf %s/%s/"
+					"text" : "sprintf symout %s/%s"
 				}
 
 			}
@@ -945,7 +945,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "getPatcherPath.js",
-				"bootpath" : "~/Arbeiten/02_code/max/packages/QueScript/javascript",
+				"bootpath" : "~/Max 7/Packages/QueScript/javascript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
