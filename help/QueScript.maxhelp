@@ -3,13 +3,13 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 7,
-			"minor" : 1,
-			"revision" : 0,
+			"minor" : 2,
+			"revision" : 2,
 			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 53.0, 198.0, 968.0, 606.0 ],
+		"rect" : [ 178.0, 129.0, 968.0, 606.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,13 +46,13 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 7,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x86",
 							"modernui" : 1
 						}
 ,
-						"rect" : [ 460.0, 124.0, 529.0, 605.0 ],
+						"rect" : [ 836.0, 211.0, 529.0, 605.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -292,7 +292,7 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 18.0, 458.0, 453.0, 22.0 ],
 									"style" : "",
-									"text" : "670"
+									"text" : "21"
 								}
 
 							}
@@ -574,7 +574,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 644.474976, 203.0, 117.0, 22.0 ],
+					"patching_rect" : [ 745.474976, 203.0, 117.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -594,9 +594,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 458.25, 203.0, 65.0, 20.0 ],
+					"patching_rect" : [ 458.25, 203.0, 145.0, 20.0 ],
 					"style" : "",
-					"text" : "examples:"
+					"text" : "START HERE: Examples"
 				}
 
 			}
@@ -802,8 +802,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 7,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x86",
 							"modernui" : 1
 						}
@@ -1157,8 +1157,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 7,
-							"minor" : 1,
-							"revision" : 0,
+							"minor" : 2,
+							"revision" : 2,
 							"architecture" : "x86",
 							"modernui" : 1
 						}
@@ -1276,8 +1276,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -1624,8 +1624,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -1972,8 +1972,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -2154,7 +2154,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 309"
+													"text" : "above 1: 306"
 												}
 
 											}
@@ -2320,8 +2320,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -2502,7 +2502,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 309"
+													"text" : "above 1: 306"
 												}
 
 											}
@@ -2668,8 +2668,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -2850,7 +2850,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 409"
+													"text" : "above 1: 403"
 												}
 
 											}
@@ -3016,8 +3016,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -3198,7 +3198,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 409"
+													"text" : "above 1: 403"
 												}
 
 											}
@@ -3364,8 +3364,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -3546,7 +3546,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 49 /testbed3 while above 1: 509"
+													"text" : "above 1: 500"
 												}
 
 											}
@@ -3712,8 +3712,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -3894,7 +3894,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 49 /testbed2 while above 1: 509"
+													"text" : "above 1: 500"
 												}
 
 											}
@@ -4060,8 +4060,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -4242,7 +4242,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 149 /testbed1 while above 1: 599"
+													"text" : "above 1: 581"
 												}
 
 											}
@@ -4408,8 +4408,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 7,
-											"minor" : 1,
-											"revision" : 0,
+											"minor" : 2,
+											"revision" : 2,
 											"architecture" : "x86",
 											"modernui" : 1
 										}
@@ -4590,7 +4590,7 @@
 													"outlettype" : [ "" ],
 													"patching_rect" : [ 16.109543, 227.0, 370.080963, 22.0 ],
 													"style" : "",
-													"text" : "above 1: 149 /testbed0 while above 1: 599"
+													"text" : "above 1: 581"
 												}
 
 											}
@@ -4778,7 +4778,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 527.25, 203.0, 110.0, 22.0 ],
+					"patching_rect" : [ 622.700012, 203.0, 110.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -5261,7 +5261,7 @@
 				"box" : 				{
 					"allowdrag" : 0,
 					"id" : "obj-4",
-					"items" : [ "<execute>", ",", "START" ],
+					"items" : [ "<execute>", ",", "que9", ",", "que8", ",", "que7", ",", "que6", ",", "que5", ",", "que4", ",", "que3", ",", "que2", ",", "que1", ",", "que0", ",", "START" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -5467,8 +5467,8 @@
 , 			{
 				"box" : 				{
 					"angle" : 270.0,
-					"grad1" : [ 0.960784, 0.827451, 0.156863, 1.0 ],
-					"grad2" : [ 0.639216, 0.458824, 0.070588, 1.0 ],
+					"grad1" : [ 0.952941, 0.564706, 0.098039, 1.0 ],
+					"grad2" : [ 0.572549, 0.27451, 0.027451, 1.0 ],
 					"id" : "obj-56",
 					"maxclass" : "panel",
 					"mode" : 1,
