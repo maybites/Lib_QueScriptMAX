@@ -14,12 +14,12 @@
 				<print>/queOne global1 is {global1}</print>
 			</else>
 		</if>
-		<while name="while" repeat="{whilevar lt 10}" start="{??whilevar = 0}" step="{whilevar = (whilevar + 1)}">
+		<while name="while" repeat="{whilevar lt 10}" start="{whilevar = 0}" step="{whilevar = (whilevar + 1)}">
 			<if true="{whilevar lt 1}">
 				<print>inside while below 1: {whilevar}</print>
-				<debugger vardomain="local"/>
+				<debugger vardomain="3"/>
 				<else>
-					<osc>/test/address inside while above 1 {whilevar}</osc>
+					<print>/test/address inside while above 1 {whilevar}</print>
 				</else>
 			</if>
 		</while>
