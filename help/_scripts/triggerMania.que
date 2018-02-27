@@ -5,12 +5,13 @@
 		<var name="tg1">0</var>
 		<var name="direction">1</var>
 		<var name="whileLoopRunning">0</var>
-		<while name="whileLoop" start="{?whilevar = 0}" repeat="{whileLoopRunning = (whilevar ge 0)}" step="{whilevar = (whilevar + direction)}">
+		<print>tg1 = {tg1}</print>
+		<while name="whileLoop" init="{::whilevar = 0}" condition="{whileLoopRunning = (whilevar ge 0)}" next="{whilevar = (whilevar + direction)}">
 			<if true="{whilevar == 0}">
- 				<expr>{?ifCommandDomain = 'onlyInsideHere'}</expr>
+ 				<expr>{:ifCommandDomain = 'onlyInsideHere'}</expr>
 
 				<print>running inside while 'whileLoop' indefinitly until trigger 'step1' has been called</print>
-				<debugger vardomain="3"/>
+				<debugger scope="local"/>
 
 				<!--  OBSERVE:
 					Running the debugger command here will show you the global-, que-domain and the
@@ -31,8 +32,7 @@
    			<track name="f1" fadeto="{f1 + (2 * PI)}">0 {2 * PI}</track>
    			<track name="f2" fadeto="0">1 1</track>
     		<if true="{TRUE}">
-					<var name="fade">0.05</var>
- 					<expr>{fade = if(f2 == 1, if(fade lt 1, (fade + 0.01) * 1.05, fade), f2)}</expr>
+ 					<expr>{::fade = if(f2 == 1, if(fade lt 1, (fade + 0.01) * 1.05, if(fade==NULL, 0, fade)), f2)}</expr>
 
  				<!--  HOW THIS WORKS
 
@@ -99,31 +99,24 @@
  				the xml-tags.
 
  				-->
-
  					<send>/triggerMania cmd0 {(0.5 - cos(f1) / 2) * 100 * fade}</send>
 					<send>/triggerMania cmd1 {(0.5 - cos(f1 + (2 * PI * 0.1)) / 2) * 100 * fade}</send>
 	    		<send>/triggerMania cmd2 {(0.5 - cos(f1 + (2 * PI * 0.2)) / 2) * 100 * fade}</send>
 	    		<send>/triggerMania cmd3 {(0.5 - cos(f1 + (2 * PI * 0.3)) / 2) * 100 * fade}</send>
     			<send>/triggerMania cmd4 {(0.5 - cos(f1 + (2 * PI * 0.4)) / 2) * 100 * fade}</send>
    			</if>
-   			<if true="{tg1}">
-					<var name="fade">0.05</var>
-
- 				<!--  OBSERVE: if we had not defined the 'tg1' variable at the beginning of the script,
- 				the {expression} {tg1} would have created a variable inside this (if)-command-domain,
- 				it would have been set to NULL, therefore the if-condition would be false and never enter
- 				inside here -->
-
- 					<expr>{fade = if(f2 == 1, if(fade lt 1, (fade + 0.01) * 1.05, fade), f2)}</expr>
-	    		<send>/triggerMania cmd5 {(0.5 - cos(f1 + (2 * PI * 0.5)) / 2) * 100 * fade}</send>
+	 			<if true="{tg1}">
+  				<expr>{::fade = if(f2 == 1, if(fade lt 1, (fade + 0.01) * 1.05, if(fade==NULL, 0, fade)), f2)}</expr>
+ 	    		<send>/triggerMania cmd5 {(0.5 - cos(f1 + (2 * PI * 0.5)) / 2) * 100 * fade}</send>
     			<send>/triggerMania cmd6 {(0.5 - cos(f1 + (2 * PI * 0.6)) / 2) * 100 * fade}</send>
     			<send>/triggerMania cmd7 {(0.5 - cos(f1 + (2 * PI * 0.7)) / 2) * 100 * fade}</send>
     			<send>/triggerMania cmd8 {(0.5 - cos(f1 + (2 * PI * 0.8)) / 2) * 100 * fade}</send>
     			<send>/triggerMania cmd9 {(0.5 - cos(f1 + (2 * PI * 0.9)) / 2) * 100 * fade}</send>
 			</if>
-  		</anim>
+  	</anim>
 		<wait trigger="tg1"/>
 		<expr>{tg1 = 1}</expr>
+		<print>tg1 is {tg1}</print>
 
 		<!--  OBSERVE: Setting here the variable 'tg1' will have an impact to the currently still
 				running above animation
@@ -146,7 +139,7 @@
 					the above query to test if the 'whileLoop' is still running.
 		-->
 
-		<debugger vardomain="2"/>
+		<debugger scope="que"/>
 
 		<!--  OBSERVE:
 					Running the debugger command here will show you only the global and que-domain
