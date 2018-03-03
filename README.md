@@ -1,7 +1,12 @@
 # Lib_QueScriptMAX
-The Max Package for [QueScript](https://github.com/maybites/Lib_QueScript/wiki/QS-Introduction)!
+The Max Package for [QueScript](https://github.com/maybites/Lib_QueScript/wiki/QS-Introduction) 0.7.0!
 
-##Download
+## Usage
+
+There is a package for the [Atom](https://atom.io/) editor for code completion and code validation. Follow the [link](https://github.com/maybites/atom_QueScript_package) for installation instructions.
+
+
+## Download
 
 This Repository has the structure of a MaxMSP package. There are two suggested ways to download:
 

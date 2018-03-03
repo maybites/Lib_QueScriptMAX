@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <script>
 	<var name="myCities">ARRAY('Zuerich','Vienna', 'Berlin', 'London', 'Madrid', 'Casablanca', 'DONE')</var>
+	<stop/>
+	<play name="startKeepLooping"/>
 	<que name="City" loop="no">
 		<var name="myQueCities">{myCities}</var>
 		<timer/>
@@ -30,5 +32,19 @@
 		<expr>set = 1</expr>
 		<print>set after anim: {set}</print>
 		<fade name="sinemania"/>
+	</que>
+	<que loop="no" name="startKeepLooping">
+		<wait countdown="5s"></wait>
+		<play name="keepLooping"/>
+	</que>
+	<que loop="normal" name="keepLooping">
+		<wait countdown="1s"></wait>
+		<print>keepLooping keeps looping</print>
+		<wait countdown="1s"></wait>
+		<print>keepLooping keeps looping</print>
+		<wait countdown="1s"></wait>
+		<print>keepLooping keeps looping</print>
+		<wait countdown="1s"></wait>
+		<print>keepLooping keeps looping</print>
 	</que>
 </script>
